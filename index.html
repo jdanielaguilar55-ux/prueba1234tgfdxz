@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerdeCódex - Inteligencia que crece contigo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --verde-principal: #2ecc71;
+            --verde-oscuro: #27ae60;
+            --verde-claro: #d5f4e6;
+            --gris-oscuro: #2c3e50;
+            --gris-claro: #ecf0f1;
+            --texto: #34495e;
+        }
+        
+        body {
+            color: var(--texto);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--verde-principal);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--verde-oscuro);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--verde-principal);
+            color: var(--verde-principal);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--verde-principal);
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--gris-oscuro);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--verde-principal);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gris-oscuro);
+        }
+        
+        .logo i {
+            color: var(--verde-principal);
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--gris-oscuro);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--verde-principal);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, var(--verde-principal), var(--gris-oscuro));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,192C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--gris-oscuro);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--verde-principal);
+            font-weight: 600;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--gris-claro);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--verde-principal);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--verde-principal);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--gris-oscuro);
+        }
+        
+        .service-card ul {
+            list-style: none;
+            text-align: left;
+            margin-top: 20px;
+        }
+        
+        .service-card ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .service-card ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--verde-principal);
+            font-weight: bold;
+        }
+        
+        /* Values Section */
+        .values {
+            background-color: white;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--verde-principal);
+            margin-bottom: 20px;
+        }
+        
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--gris-oscuro);
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--gris-oscuro), var(--verde-oscuro));
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--gris-oscuro);
+            color: white;
+            padding: 70px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--verde-principal);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #bdc3c7;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--verde-principal);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--verde-principal);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <span>VerdeCódex</span>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#valores">Valores</a></li>
+                    <li><a href="#contacto" class="btn btn-outline">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container hero-content">
+            <h1>Inteligencia que crece contigo</h1>
+            <p>Automatizamos tus mensajes y llamadas con IA, manteniendo el toque humano que tus clientes valoran.</p>
+            <a href="#contacto" class="btn">Quiero una demo gratuita</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="section-title">
+                <h2>¿Quiénes somos?</h2>
+                <p>Conoce la historia detrás de VerdeCódex</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Transformando la comunicación empresarial con IA</h3>
+                    <p>En un mundo donde la comunicación empresarial cambia cada segundo, las pequeñas y medianas empresas enfrentan un reto común: mantener una atención rápida, constante y personalizada para cada cliente.</p>
+                    <p>Aquí es donde entra VerdeCódex, una agencia creada con una misión clara: ayudar a las empresas a automatizar sus mensajes y llamadas mediante inteligencia artificial, sin perder el toque humano.</p>
+                    <p>Aunque VerdeCódex es una agencia joven, está respaldada por años de experiencia trabajando con modelos de IA, sistemas de mensajería inteligente y asistentes virtuales personalizados.</p>
+                    <p class="signature">Daniel Aguilar, Fundador de VerdeCódex</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Daniel Aguilar - Fundador de VerdeCódex">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios</h2>
+                <p>Soluciones de automatización adaptadas a tu negocio</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Automatización de Mensajería</h3>
+                    <p>Atención 24/7 para tus clientes con respuestas personalizadas y lenguaje natural.</p>
+                    <ul>
+                        <li>Atención 24/7 para tus clientes</li>
+                        <li>Respuestas personalizadas con lenguaje natural</li>
+                        <li>Integración con tus sistemas actuales</li>
+                        <li>CRM, bases de datos, formularios</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Asistentes Virtuales de Llamada</h3>
+                    <p>Recepción automática de llamadas con IA que clasifica consultas y proporciona respuestas personalizadas.</p>
+                    <ul>
+                        <li>Recepción automática de llamadas con IA</li>
+                        <li>Respuestas personalizadas y clasificación de consultas</li>
+                        <li>Configuración en varios idiomas</li>
+                        <li>Español, inglés, y más</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values" id="valores">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Valores</h2>
+                <p>La filosofía que guía nuestro trabajo</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Simplicidad</h3>
+                    <p>Hacemos que la automatización sea comprensible y práctica para todos.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Transparencia</h3>
+                    <p>Cada solución se diseña contigo, paso a paso, sin sorpresas.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Evolución Constante</h3>
+                    <p>Actualizamos y mejoramos nuestras herramientas según la realidad de tu empresa.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Humanidad</h3>
+                    <p>La tecnología no reemplaza a las personas, las potencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contacto">
+        <div class="container">
+            <h2>¿Listo para transformar tu comunicación?</h2>
+            <p>Descubre cómo nuestras soluciones de automatización con IA pueden impulsar tu empresa. Agenda una demostración gratuita y personalizada.</p>
+            <a href="mailto:verdecodex.ai@gmail.com" class="btn">Quiero una demo gratuita</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>VerdeCódex</h3>
+                    <p>Inteligencia artificial que crece con tu negocio, manteniendo el toque humano que tus clientes valoran.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <a href="#servicios">Automatización de Mensajería</a>
+                    <a href="#servicios">Asistentes Virtuales de Llamada</a>
+                    <a href="#servicios">Consultoría en IA</a>
+                    <a href="#servicios">Integración de Sistemas</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <a href="mailto:verdecodex.ai@gmail.com">verdecodex.ai@gmail.com</a>
+                    <p>Ciudad, País</p>
+                    <a href="#contacto" class="btn" style="margin-top: 15px;">Solicitar Demo</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 VerdeCódex. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menú móvil
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Cerrar menú móvil si está abierto
+                    document.querySelector('nav').classList.remove('active');
+                }
+            });
+        });
+        
+        // Manejo del botón de demo
+        document.querySelectorAll('.btn').forEach(button => {
+            if(button.getAttribute('href') === '#contacto') {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Aquí normalmente se abriría un formulario o se redirigiría
+                    window.location.href = 'mailto:verdecodex.ai@gmail.com?subject=Solicitud de Demo Gratuita&body=Hola, me interesa conocer más sobre VerdeCódex y solicitar una demo gratuita.';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
